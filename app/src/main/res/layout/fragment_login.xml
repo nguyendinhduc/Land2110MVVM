@@ -29,6 +29,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_username"
+                android:drawableLeft="@drawable/sharp_perm_identity_blue_500_24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="64dp"
@@ -52,6 +53,7 @@
                 android:background="@drawable/bg_edt"
                 android:drawablePadding="8dp"
                 android:hint="Password"
+                android:drawableLeft="@drawable/sharp_lock_open_blue_500_24dp"
                 android:inputType="textPassword"
                 android:paddingLeft="8dp"
                 android:paddingTop="16dp"

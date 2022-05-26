@@ -46,7 +46,7 @@ class LoginViewModel : ViewModel {
                 {
                     if (it is HttpException){
                         //lay data loi tra ve
-                        val contentError = (it as HttpException).response().errorBody().string()
+                        val contentError = (it as HttpException).response().errorBody()?.string()
                         val error = Gson().fromJson<ErrorResponse>(contentError, ErrorResponse::class.java)
                         errorResponse.value = error
                     }

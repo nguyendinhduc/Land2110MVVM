@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.t3h.mvvm.R
+import com.t3h.mvvm.common.SharedPreferenceCommon
 import com.t3h.mvvm.databinding.FragmentLoginBinding
 import com.t3h.mvvm.ui.base.fragment.BaseFragment
+import com.t3h.mvvm.ui.start.StartActivity
 
 class LoginFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentLoginBinding
@@ -31,7 +33,12 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         //dang khi su kien khi thay doi du lieu trong loginData
         viewModel.loginData.observe(getViewLifecycleOwner(), Observer {
             //roi vao day: mo man hinh Hom
-                Toast.makeText(requireContext(),"Login success", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),"Login success", Toast.LENGTH_SHORT).show()
+
+            SharedPreferenceCommon.saveUserToken(requireContext(), it.token)
+
+            (requireActivity() as StartActivity).openMain()
+
         })
 
         viewModel.errorResponse.observe(getViewLifecycleOwner(), Observer {
