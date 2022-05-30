@@ -4,6 +4,6 @@ import com.auth0.android.jwt.JWT
 
 object JwtUtils {
     fun getAttribute(token: String, key: String): String? {
-        return JWT(token).getClaim(key).asString()
+        return JWT(token).claims[key]!!.asString()
     }
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="?actionBarSize"
+                android:layout_height="?actionBarSize"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="14dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_arrow_back_blue_500_48dp" />
+
+            <com.t3h.mvvm.ui.customview.StatusSquareImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="48dp"
+                app:isActivation="true"
+                app:radioActivation="135"
+                app:visibleBorderActivation="true"
+                android:layout_height="48dp"
+                app:radiusActivation="5dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ao_dai" />
+
+            <TextView
+                android:id="@+id/tv_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:text="Nguyen Van A"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_send"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="13dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/baseline_send_blue_500_48dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="13dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/baseline_picture_in_picture_blue_500_48dp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:id="@+id/edt_content"
+                android:layout_toLeftOf="@id/btn_send"
+                android:layout_toRightOf="@+id/btn_image"
+                android:background="@drawable/bg_edt_send"
+                android:hint="Text message......"
+                android:paddingLeft="14dp"
+                android:paddingTop="8dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="8dp" />
+        </RelativeLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/ll_header"
+            android:layout_above="@id/rl_button"
+            android:id="@+id/refresh"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+</layout>

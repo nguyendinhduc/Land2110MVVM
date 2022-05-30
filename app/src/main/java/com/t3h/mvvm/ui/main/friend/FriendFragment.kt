@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.t3h.mvvm.common.CommonApp
 import com.t3h.mvvm.common.SharedPreferenceCommon
 import com.t3h.mvvm.databinding.FragmentFriendBinding
 import com.t3h.mvvm.model.response.FriendResponse
 import com.t3h.mvvm.ui.base.fragment.BaseFragment
+import com.t3h.mvvm.ui.main.MainActivity
 import com.t3h.mvvm.ui.start.StartActivity
+import com.t3h.mvvm.utils.CommonUtils
 
 class FriendFragment : BaseFragment(), FriendAdapter.IFriendAdapter {
     private lateinit var binding: FragmentFriendBinding
@@ -32,14 +36,18 @@ class FriendFragment : BaseFragment(), FriendAdapter.IFriendAdapter {
         register()
 
         viewModel.getFriends()
+        initViews()
+        return binding.root
+    }
 
-
+    private fun initViews(){
         binding.refresh.setOnRefreshListener {
             viewModel.getFriends()
         }
-
-        return binding.root
+        CommonUtils.loadNormalImageLink(binding.ivAvatar, CommonApp.avatar)
     }
+
+
 
     private fun register(){
         viewModel.friendsModel.observe(getViewLifecycleOwner(), androidx.lifecycle.Observer {
@@ -70,7 +78,16 @@ class FriendFragment : BaseFragment(), FriendAdapter.IFriendAdapter {
         })
     }
 
-//    override fun getCount(): Int {
+    override fun onClickItem(position: Int) {
+        (requireActivity() as MainActivity).openChatFragment(
+            getFriend(position).friendId,
+            getFriend(position).avatar,
+            getFriend(position).firstName+" "+getFriend(position).lastName,
+            this
+        )
+    }
+
+    //    override fun getCount(): Int {
 //        return this.friendResponses.size
 //    }
 

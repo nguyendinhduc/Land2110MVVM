@@ -26,6 +26,9 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>{
             inter.getFriend(position).firstName+" "+
             inter.getFriend(position).lastName
         )
+        holder.binding.llRoot.setOnClickListener {
+            this.inter.onClickItem(holder.adapterPosition)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -35,6 +38,7 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.FriendHolder>{
     interface IFriendAdapter{
         fun getCount():Int
         fun getFriend(position:Int): FriendResponse
+        fun onClickItem(position:Int)
     }
     class FriendHolder(val binding:ItemFriendBinding) : RecyclerView.ViewHolder(binding.root)
 }

@@ -18,6 +18,15 @@ open class BaseActivity : AppCompatActivity(){
         return null
     }
 
+    fun getBaseFragment(tag:String): BaseFragment?{
+        for (fragment in supportFragmentManager.fragments) {
+            if (fragment != null && tag.equals(fragment.tag)){
+                return fragment as BaseFragment
+            }
+        }
+        return null
+    }
+
     open override fun onBackPressed() {
         val fr = getCurrentBaseFragment()
         if (fr != null ){
